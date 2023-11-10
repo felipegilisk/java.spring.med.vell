@@ -4,6 +4,7 @@ API com fins acadêmicos para CRUD no banco de dados.
 
 Feito com:
 - [IDE Intellij](https://www.jetbrains.com/pt-br/idea/)
+- [Sprint Initializr](https://start.spring.io/)
 - [Java 17](https://www.oracle.com/java)
 - Rest API
 - [Spring Boot 3](https://spring.io/projects/spring-boot)
@@ -146,7 +147,7 @@ http://localhost:8080/medicos/{id}
 - id do médico a excluir
 3. Retorno: - sem retorno -
 
-⚠️ Nota ⚠️: A requisição DELETE realiza uma exclusão lógica na tabela medicos, sendo alterada a coluna 'status' de 1 para 0
+⚠️ Nota ⚠️: A requisição DELETE realiza apenas uma exclusão lógica na tabela medicos, sendo alterada a coluna 'status' de 1 para 0
 
 ## Licença
 Desenvolvido com auxílio da escola Alura e o instrutor [Rodrigo Ferreira](https://cursos.alura.com.br/user/rodrigo-ferreira)
