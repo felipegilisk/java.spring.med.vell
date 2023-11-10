@@ -17,7 +17,7 @@ public record MedicoData(
         @Pattern(regexp = "\\d{4,6}")
         String crm,
         @NotBlank
-        @Pattern(regexp = "^\\([1-9]{2}\\)\\s?9?[6-9]{1}[0-9]{3}-[0-9]{4}$")
+        @Pattern(regexp = "[(][1-9]{2}[)][\\s]?[9]?[2-9]{1}[0-9]{3}[-][0-9]{4}")
         String telefone,
         @NotNull
         Especialidade especialidade,

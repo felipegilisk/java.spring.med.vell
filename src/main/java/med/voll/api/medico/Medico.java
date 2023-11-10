@@ -25,6 +25,7 @@ public class Medico {
 
     @Embedded
     private Endereco endereco;
+    private boolean status;
 
     public Medico(MedicoData novoMed) {
         this.nome = novoMed.nome();
@@ -32,6 +33,7 @@ public class Medico {
         this.email = novoMed.email();
         this.telefone = novoMed.telefone();
         this.especialidade = novoMed.especialidade();
+        this.status = true;
         this.endereco = new Endereco(novoMed.endereco());
     }
 
@@ -50,4 +52,33 @@ public class Medico {
     public Especialidade getEspecialidade() {
         return this.especialidade;
     }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public boolean getStatus() {
+        return this.status;
+    }
+
+    public void atualizar(MedicoUpdate dadosMed) {
+        if (dadosMed.nome() != null) {
+            this.nome = dadosMed.nome();
+        }
+        if (dadosMed.telefone() != null) {
+            this.telefone = dadosMed.telefone();
+        }
+        if (dadosMed.endereco() != null) {
+            this.endereco.atualizar(dadosMed.endereco());
+        }
+    }
+
+    public void inativar() {
+        this.status = false;
+    }
+
+    public void reativar() {
+        this.status = true;
+    }
+
 }

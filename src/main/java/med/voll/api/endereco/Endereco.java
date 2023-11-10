@@ -29,4 +29,28 @@ public class Endereco {
         this.cidade = novoEnd.cidade();
         this.uf = novoEnd.uf();
     }
+
+    public void atualizar(EnderecoData novoEnd) {
+        if (novoEnd.logradouro() != null) {
+            this.logradouro = novoEnd.logradouro();
+        }
+        if (novoEnd.numero() != null) {
+            this.numero = novoEnd.numero();
+        }
+        if (novoEnd.complemento() != null) {
+            this.complemento = novoEnd.complemento();
+        }
+        if (novoEnd.cep() != null) {
+            this.cep = novoEnd.cep();
+        }
+        if (novoEnd.bairro() != null) {
+            this.bairro = novoEnd.bairro();
+        }
+        if (novoEnd.cidade() != null) {
+            this.cidade = novoEnd.cidade();
+        }
+        if (novoEnd.uf() != null) {
+            this.uf = novoEnd.uf();
+        }
+    }
 }
