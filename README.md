@@ -1,10 +1,10 @@
 # java.spring.med.vell
 
-API para CRUD no banco de dados.
+API com fins acadêmicos para CRUD no banco de dados.
 
-Feito com fins acadêmicos com uso das ferramentas:
+Feito com:
 - IDE Intellij
-- Java
+- Java 17
 - Rest API
 - Springboot
 - MVC
@@ -12,10 +12,13 @@ Feito com fins acadêmicos com uso das ferramentas:
 - Flyway
 - lombok
 
-Verificar se o serviço do MySQL está em execução
+### Para executar:
+- [Instalação do Java 17](https://www.oracle.com/br/java/technologies/downloads/#java17)
+- MySQL 8.0 executado em serviço windows (abaixo) ou docker
 >![image](https://github.com/felipegilisk/java.spring.med.vell/assets/95372771/828d630d-4183-4af7-86fe-69108380f02e)
 
-- Endpoints:
+### Endpoints:
+- Recomendado o uso do [Postman](https://www.postman.com/downloads/) ou [Insomnia](https://insomnia.rest/download) para fazer as requisições.
 1. POST: http://localhost:8080/medicos
 ```
    {
