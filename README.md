@@ -1,7 +1,10 @@
 # java.spring.med.vell
 
-Feito com 
+API para CRUD no banco de dados.
+
+Feito com fins acadêmicos com uso das ferramentas:
 - IDE Intellij
+- Java
 - Rest API
 - Springboot
 - MVC
@@ -16,25 +19,35 @@ Verificar se o serviço do MySQL está em execução
 1. POST: http://localhost:8080/medicos
 ```
    {
-    "nome": (String não vazia, obrigatório),
-    "email": (String de email válida, obrigatório),
-    "crm": (String com 4 a 6 dígitos, obrigatório),
-    "especialidade": (String com apenas um dos valores: ["ORTOPEDIA", "CARDIOLOGIA", "GINECOLOGIA", "DERMATOLOGIA"], obrigatório),
-    "telefone": (String no formato "(99) [9]9999-9999" - onde [9] é opcional, obrigatório),
+    "nome": (Obrigatório; String não vazia),
+    "email": (Obrigatório; String de email válida),
+    "crm": (Obrigatório; String com 4 a 6 dígitos),
+    "especialidade": (Obrigatório; String com apenas um dos valores: ["ORTOPEDIA", "CARDIOLOGIA", "GINECOLOGIA", "DERMATOLOGIA"] ),
+    "telefone": (Obrigatório; String no formato "(99) [9]9999-9999" - onde [9] é opcional),
     "endereco": {
-        "logradouro": (String não vazia, obrigatório),
-        "numero": (String, opcional),
-        "complemento": (String, opcional)
-        "bairro": (String não vazia, obrigatório),
-        "cep": (String no formato 99999-999, obrigatório),
-        "cidade": (String não vazia, obrigatório),
-        "uf": (String não vazia, obrigatório)
+        "logradouro": (Obrigatório; String não vazia),
+        "numero": (Opcional, String),
+        "complemento": (Opcional; String)
+        "bairro": (Obrigatório; String não vazia),
+        "cep": (Obrigatório; String no formato 99999-999),
+        "cidade": (Obrigatório; String não vazia),
+        "uf": (Obrigatório; String com 2 caracteres)
   }
 ```
 2. GET: http://localhost:8080/medicos
    2.1 parâmetros:
-   - size (opcional) - quantidade de registros do retorno, por padrão o valor é 20
-   - page (opcional) - página da listagem, a contagem é iniciada em 0
+   - tamanho (opcional) - Quantidade de registros do retorno. Por padrão o valor é 10.
+   ```
+   http://localhost:8080/medicos?tamanho=3
+   ```
+   - pagina (opcional) - Página da listagem, a contagem é iniciada em 0
+   ```
+   http://localhost:8080/medicos?pagina=1
+   ```
+   - ordem (opcional) - Campo da ordenação, sendo as opções: ["nome", "email", "crm", "especialidade"], também é possível fazer a ordem decrescente adicionando ",desc" após o campo. Por padrão a ordenação é por especialidade.
+   ```
+   http://localhost:8080/medicos?ordem=nome,desc
+   ```
    2.2 exemplo de retorno:
 ```
   {
