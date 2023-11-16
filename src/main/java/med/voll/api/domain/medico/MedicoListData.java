@@ -1,4 +1,6 @@
-package med.voll.api.medico;
+package med.voll.api.domain.medico;
+
+import med.voll.api.domain.especialidade.Especialidade;
 
 public record MedicoListData(Long id, String nome, String email, String crm, Especialidade especialidade) {
 

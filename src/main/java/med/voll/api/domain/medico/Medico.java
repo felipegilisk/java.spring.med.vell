@@ -1,8 +1,10 @@
-package med.voll.api.medico;
+package med.voll.api.domain.medico;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.*;
-import med.voll.api.endereco.Endereco;
+import med.voll.api.domain.endereco.Endereco;
+import med.voll.api.domain.especialidade.Especialidade;
 
 @Table(name = "medicos")
 @Entity(name = "Medicos")
@@ -20,7 +22,9 @@ public class Medico {
     private String crm;
     private String telefone;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name="id_especialidade")
+    @Valid
     private Especialidade especialidade;
 
     @Embedded
@@ -37,6 +41,10 @@ public class Medico {
         this.endereco = new Endereco(novoMed.endereco());
     }
 
+    public Long getId() {
+        return this.id;
+    }
+
     public String getNome() {
         return this.nome;
     }
@@ -49,12 +57,20 @@ public class Medico {
         return this.crm;
     }
 
+    public String getTelefone() {
+        return this.telefone;
+    }
+
     public Especialidade getEspecialidade() {
         return this.especialidade;
     }
 
-    public Long getId() {
-        return this.id;
+    public void setEspecialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
+    }
+
+    public Endereco getEndereco() {
+        return this.endereco;
     }
 
     public boolean getStatus() {
