@@ -21,7 +21,7 @@ public class Especialidade {
     public Especialidade(EspecialidadeData novaEsp){
         this.nome = novaEsp.nome();
         this.descricao = novaEsp.descricao();
-        this.status = novaEsp.status();
+        this.status = true;
     }
 
     public Long getId() {
@@ -54,5 +54,9 @@ public class Especialidade {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public void inativar() {
+        this.setStatus(false);
     }
 }

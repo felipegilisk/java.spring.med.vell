@@ -1,16 +1,15 @@
 package med.voll.api.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.domain.especialidade.Especialidade;
-import med.voll.api.domain.especialidade.EspecialidadeData;
-import med.voll.api.domain.especialidade.EspecialidadeListData;
-import med.voll.api.domain.especialidade.EspecialidadeRepository;
+import med.voll.api.domain.especialidade.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("especialidades")
@@ -20,8 +19,11 @@ public class EspecialidadeController {
     private EspecialidadeRepository repositoryEsp;
 
     @PostMapping
-    public void cadastrar(@RequestBody @Valid EspecialidadeData novaEsp) {
-        repositoryEsp.save(new Especialidade(novaEsp));
+    public ResponseEntity cadastrar(@RequestBody @Valid EspecialidadeData novaEsp, UriComponentsBuilder uriBuilder) {
+        Especialidade espCriada = new Especialidade(novaEsp);
+        repositoryEsp.save(espCriada);
+        var uri = uriBuilder.path("/especialidades/{id}").buildAndExpand(espCriada.getId()).toUri();
+        return ResponseEntity.created(uri).body(new EspecialidadeData(espCriada));
     }
 
     @GetMapping
@@ -35,18 +37,23 @@ public class EspecialidadeController {
         var esp = repositoryEsp.getReferenceById(id);
         return ResponseEntity.ok(new EspecialidadeData(esp));
     }
-//
-//    @PutMapping
-//    @Transactional
-//    public void atualizar(@RequestBody @Valid MedicoUpdate dadosEsp) {
-//        var especialidade = repositoryEsp.getReferenceById(dadosEsp.id());
-//        especialidade.atualizar(dadosEsp);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    @Transactional
-//    public void excluir(@PathVariable Long id) {
-//        var especialidade = repositoryEsp.getReferenceById(id);
-//        especialidade.inativar();
-//    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity atualizar(@RequestBody @Valid EspecialidadeUpdate dadosEsp) {
+        var esp = repositoryEsp.getReferenceById(dadosEsp.id());
+        esp.setDescricao(dadosEsp.descricao());
+
+        return ResponseEntity.ok(new EspecialidadeData(esp));
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity excluir(@PathVariable Long id) {
+        var esp = repositoryEsp.getReferenceById(id);
+        esp.inativar();
+
+        return ResponseEntity.noContent().build();
+    }
+
 }

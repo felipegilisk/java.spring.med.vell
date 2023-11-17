@@ -9,20 +9,20 @@ import med.voll.api.domain.endereco.EnderecoData;
 import med.voll.api.domain.especialidade.Especialidade;
 
 public record MedicoData(
-        @NotBlank
+        @NotBlank(message = "Campo obrigatório, não pode estar vazio")
         String nome,
-        @NotBlank
-        @Email
+        @NotBlank(message = "Campo obrigatório, não pode estar vazio")
+        @Email(message = "Formato do e-mail inválido")
         String email,
-        @NotNull
+        @NotNull(message = "Campo obrigatório")
         @Pattern(regexp = "\\d{4,6}")
         String crm,
-        @NotBlank
-        @Pattern(regexp = "[(][1-9]{2}[)][\\s]?[9]?[2-9]{1}[0-9]{3}[-][0-9]{4}")
+        @NotBlank(message = "Campo obrigatório, não pode estar vazio")
+        @Pattern(regexp = "[(][1-9]{2}[)][\\s]?[9]?[2-9]{1}[0-9]{3}[-][0-9]{4}", message = "Formato inválido! Padrão: (XX) [X]XXXX-XXXX")
         String telefone,
-        @NotNull
+        @NotNull(message = "Campo obrigatório")
         Especialidade especialidade,
-        @NotNull
+        @NotNull(message = "Campo obrigatório")
         @Valid
         EnderecoData endereco) {
 
