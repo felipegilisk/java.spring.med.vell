@@ -7,7 +7,7 @@ import med.voll.api.domain.endereco.Endereco;
 import med.voll.api.domain.especialidade.Especialidade;
 
 @Table(name = "medicos")
-@Entity(name = "Medicos")
+@Entity(name = "Medico")
 @Getter
 @Data
 @NoArgsConstructor
